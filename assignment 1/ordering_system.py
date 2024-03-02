@@ -1,20 +1,30 @@
 menu = {
-    1: {"name": 'espresso',
-        "price": 1.99},
-    2: {"name": 'coffee', 
-        "price": 2.50},
-    3: {"name": 'cake', 
-        "price": 2.79},
-    4: {"name": 'soup', 
-        "price": 4.50},
-    5: {"name": 'sandwich',
-        "price": 4.99}
+    1: {"name": "espresso", "price": 1.99},
+    2: {"name": "coffee", "price": 2.50},
+    3: {"name": "cake", "price": 2.79},
+    4: {"name": "soup", "price": 4.50},
+    5: {"name": "sandwich", "price": 4.99}
 }
 
 
+def display_menu():
+    print("Menu:")
+    for item_number, details in menu.items():
+        print(f"{item_number}. {details['name']} - ${details['price']}")
 
 
-def calculate_subtotal(order)
+def select_items():
+    order = []
+    for _ in range(3):
+        try:
+            item_number = int(input("Enter the item number you want to select: "))
+            order.append(menu[item_number])
+        except (ValueError, KeyError):
+            print("Invalid input. Please enter a valid item number.")
+    return order
+
+
+def calculate_subtotal(order):
     """Calculates the subtotal of an order.
 
     Args:
@@ -27,7 +37,8 @@ def calculate_subtotal(order)
     subtotal = sum(item['price'] for item in order)
     return subtotal
 
-def calculate_tax(subtotal)
+
+def calculate_tax(subtotal):
     """Calculates the tax for an order.
 
     Args:
@@ -42,8 +53,7 @@ def calculate_tax(subtotal)
     return tax
 
 
-
-def summarize_order(order)
+def summarize_order(order):
     """Summarizes the order details.
 
     Args:
@@ -59,16 +69,19 @@ def summarize_order(order)
     total = round(subtotal + tax, 2)
     return names, total
 
-def main()
+
+def main():
     """Displays the menu, allows item selection, and summarizes the order."""
     display_menu()
     order = select_items()
     names, total = summarize_order(order)
 
     print("\nYour order summary:")
-    for name in names
+    for name in names:
         print(f"- {name}")
     print(f"Total: ${total:.2f}")
 
-if __name__ == "_main_":
+
+# This line checks if the script is being run directly or imported as a module.
+if __name__ == "__main__":
     main()
